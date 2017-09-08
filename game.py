@@ -1,7 +1,6 @@
-#from random import randint
-#import random
-gen = 7
+import random
 from random import randint
+gen = 7
 vow_samp = 2
 #print("vow: " + str(vow_samp))
 gen -= 2
@@ -24,18 +23,15 @@ vowels = ['a','e','i','o','u']
 com_cons = ['c','d','f','g','h','l','m','n','r','s','t']
 uncom_cons = ['b','k','p','v','y']
 rare_cons = ['z','x','j']
-letter_space = random.sample(list(vowels), vow_samp) + random.sample(list(com_cons), com_samp) + random.sample(list(uncom_cons), uncom_samp) + random.sample(list(rare_cons), rare_samp)
+letter_space = random.sample(list(vowels), vow_samp) + random.sample(list(com_cons), com_samp) + random.sample(list(uncom_cons), uncom_samp) 
+if len(letter_space) < 7:
+    letter_space.append(random.sample(list(rare_cons), 7 - len(letter_space)))
 #print(letter_space)
 key_letter = random.choice(letter_space)
 for x in alphabet:
     for y in letter_space:
         if y in alphabet:
             alphabet.remove(y)
-#generate_letters()
-#if len(guess) >= 5:
-#    game_words = []
-#    if letter_space[-1].lower() in guess:
-#        print(True)
 points = 0
 game_words = []
 print("   " + letter_space[0].upper())
@@ -55,8 +51,10 @@ for line in word_file:
 print(readable_words)
 print(len(readable_words))          
 if len(readable_words) >= 25:
-    guess = input("enter your word: ")
+    guess = input("enter your words: ")
+#    while guess != "quit game":
     for w in readable_words:
         if w == guess:
-            print("valid")
+            print("correct")
             points += 1
+        
